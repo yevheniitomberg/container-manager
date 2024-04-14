@@ -1,0 +1,62 @@
+{
+  "name": "remote-manager-app",
+  "version": "1.0.0",
+  "description": "Remote Server Manager",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron-forge start",
+    "dev:watch": "npx electronmon --trace-warnings .",
+    "electron-build": "electron-builder",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "author": "Yevhenii Tomberg",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.5",
+    "electron-prompt": "^1.7.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "node-scp": "^0.0.23",
+    "ssh2": "^1.15.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.2.0",
+    "@electron-forge/maker-deb": "^7.2.0",
+    "@electron-forge/maker-rpm": "^7.2.0",
+    "@electron-forge/maker-squirrel": "^7.2.0",
+    "@electron-forge/maker-zip": "^7.2.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.2.0",
+    "electron": "^28.1.4",
+    "electron-is-dev": "^2.0.0"
+  },
+  "build": {
+    "appId": "com.example.my-electron-react-app",
+    "files": [
+      {
+        "from": "./app/build",
+        "to": ".",
+        "filter": [
+          "electron",
+          "images",
+          "node_modules",
+          "main.js",
+          "package.json"
+        ]
+      }
+    ],
+    "extends": null,
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "portable"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}

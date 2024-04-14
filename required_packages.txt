@@ -1,0 +1,5 @@
+jc
+netstat
+docker
+python
+crossplane
