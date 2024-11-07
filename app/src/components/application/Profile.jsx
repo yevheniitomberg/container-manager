@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import NavBar from "./NavBar"
 import AddServer from "./AddServer"
 import { toast } from "react-toastify"
@@ -19,6 +19,7 @@ function Profile() {
   const [modalOpened, setModalOpened] = useState(false)
   const dispatch = useDispatch()
   const toastId = React.useRef(null)
+  const location = useLocation()
 
   const notify = () =>
     (toastId.current = toast.loading("Processing...", { autoClose: false }))
@@ -48,6 +49,9 @@ function Profile() {
   }
 
   useEffect(() => {
+    if (location.pathname !== "/") {
+      document.body.classList.remove("login-body")
+    }
     dispatch(setConnectedServer({}))
     renderer.on("addServer:success", (event, args) => {
       update(event.message, "success")

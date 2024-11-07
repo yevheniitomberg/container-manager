@@ -46,6 +46,7 @@ function createMainWindow() {
     title: "Electron",
     width: 1000,
     height: 600,
+    autoHideMenuBar: true,
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: true,
